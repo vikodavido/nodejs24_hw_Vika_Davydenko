@@ -1,7 +1,7 @@
-import { LoggerMiddleware } from './logger.middleware';
+import { LogIpMiddleware } from './logger.middleware';
 
-describe('LoggerMiddleware', () => {
+describe('LogIpMiddleware', () => {
   it('should be defined', () => {
-    expect(new LoggerMiddleware()).toBeDefined();
+    expect(new LogIpMiddleware()).toBeDefined();
   });
 });
