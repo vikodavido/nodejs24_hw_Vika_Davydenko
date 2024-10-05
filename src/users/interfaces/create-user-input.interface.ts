@@ -1,7 +1,7 @@
-export interface IUser {
-    id: number;
+export interface ICreateUserInput {
     firstName: string;
     lastName: string;
     age: number;
     isStudent: boolean;
-}
+    password: string;
+  }
