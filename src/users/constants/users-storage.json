@@ -1,0 +1,32 @@
+[
+    {
+      "id": 1,
+      "firstName": "Viko",
+      "lastName": "Davido",
+      "age": 28,
+      "isStudent": true,
+      "password": "qwerty",
+      "accessToken": "",
+      "refreshToken": ""
+    },
+    {
+      "id": 2,
+      "firstName": "Paul",
+      "lastName": "Wilbur",
+      "age": 56,
+      "isStudent": false,
+      "password": "",
+      "accessToken": "",
+      "refreshToken": ""
+    },
+    {
+      "id": 3,
+      "firstName": "Kim",
+      "lastName": "Walker",
+      "age": 39,
+      "isStudent": true,
+      "password": "",
+      "accessToken": "",
+      "refreshToken": ""
+    }
+]

@@ -26,7 +26,7 @@ import {
   
     findOne(firstName: string): IUser {
       const user = users.find((user) => user.firstName === firstName);
-  
+     
       if (!user) {
         throw new NotFoundException(
           `User with first name ${firstName} not found`,
