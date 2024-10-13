@@ -39,9 +39,15 @@ import {
       return users;
     }
   
-    findOneWithoutExeption(firstName: string): IUser {
-      return users.find((user) => user.firstName === firstName);
-    }
+    // findOneWithoutExeption(firstName: string): IUser {
+    //   return users.find((user) => user.firstName === firstName);
+    // }
+  
+    async findOneWithoutExeption(firstName: string): Promise<IUser | null> {
+      
+      return users.find((user) => user.firstName === firstName) || null;
+  }
+  
   
     findOneById(id: number): IUser {
       const user = users.find((user) => user.id === id);
