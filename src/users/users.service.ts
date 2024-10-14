@@ -26,7 +26,7 @@ import {
   
     findOne(firstName: string): IUser {
       const user = users.find((user) => user.firstName === firstName);
-  
+     
       if (!user) {
         throw new NotFoundException(
           `User with first name ${firstName} not found`,
@@ -39,9 +39,15 @@ import {
       return users;
     }
   
-    findOneWithoutExeption(firstName: string): IUser {
-      return users.find((user) => user.firstName === firstName);
-    }
+    // findOneWithoutExeption(firstName: string): IUser {
+    //   return users.find((user) => user.firstName === firstName);
+    // }
+  
+    async findOneWithoutExeption(firstName: string): Promise<IUser | null> {
+      
+      return users.find((user) => user.firstName === firstName) || null;
+  }
+  
   
     findOneById(id: number): IUser {
       const user = users.find((user) => user.id === id);
