@@ -17,4 +17,9 @@ export class UpdateUserPartialInputDto implements IUpdateUserPartialInput {
   @IsBoolean()
   @IsOptional()
   isStudent: boolean | null;
+
+  @IsString()
+  @IsOptional()
+  password: string | null;
+
 }
