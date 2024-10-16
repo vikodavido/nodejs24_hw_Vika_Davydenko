@@ -13,4 +13,7 @@ export class UpdateUserInputDto implements IUpdateUserInput {
 
   @IsBoolean()
   isStudent: boolean | null;
+
+  @IsString()
+  password: string | null;
 }

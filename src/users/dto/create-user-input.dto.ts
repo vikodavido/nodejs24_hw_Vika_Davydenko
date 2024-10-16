@@ -16,4 +16,5 @@ export class CreateUserInputDto implements ICreateUserInput {
 
   @IsString()
   password: string;
+    
 }
