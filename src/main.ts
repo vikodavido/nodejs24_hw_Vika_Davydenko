@@ -4,12 +4,9 @@ import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  
+  const port =  process.env.PORT || 3001;
   app.useGlobalPipes(new ValidationPipe());
 
-  await app.listen(3000, () => {
-    console.log('Application is running on: http://localhost:3000');
-    console.log('Connected to MongoDB');
-  });
+  await app.listen(port);
 }
 bootstrap();

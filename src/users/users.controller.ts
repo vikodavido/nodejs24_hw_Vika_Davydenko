@@ -1,56 +1,40 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-  Put,
-} from '@nestjs/common';
+import { Controller, Get, Param, Post, Body, Patch, Delete } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { CreateUserInputDto } from './dto/create-user-input.dto';
-import { UpdateUserInputDto } from './dto/update-user-input.dto';
-import { UpdateUserPartialInputDto } from './dto/update-user-partial-input.dto';
-import { IUser } from './interfaces/user.interface';
-import { Document } from 'mongoose';
+import { ICreateUserInput } from './interfaces/create-user-input.interface';
+import { IUpdateUserPartialInput } from './interfaces/update-user-partial-input.interface';
+import { User } from './user.schema';
+
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @Get(':id')
-  async getUser(@Param('id') id: string): Promise<IUser & Document> {
-    return this.usersService.findOneById(id);
-  }
-
   @Get()
-  async listUsers(): Promise<IUser[]> {
+  async listUsers(): Promise<User[]> {
     return this.usersService.list();
   }
 
   @Post()
-  async createUser(@Body() dto: CreateUserInputDto): Promise<IUser> {
+  async createUser(@Body() dto: ICreateUserInput): Promise<void> {
     return this.usersService.create(dto);
   }
 
-  @Patch(':id')
-  async updateUserPartially(
-    @Param('id') id: string,
-    @Body() updateUserDto: UpdateUserPartialInputDto,
-  ): Promise<IUser> {
-    return this.usersService.updatePartially(id, updateUserDto);
+  @Get(':firstName')
+  async findOne(@Param('firstName') firstName: string): Promise<User> {
+    return this.usersService.findOne(firstName);
   }
 
-  @Put(':id')
-  async updateUser(
-    @Param('id') id: string,
-    @Body() updateUserDto: UpdateUserInputDto,
-  ): Promise<IUser> {
-    return this.usersService.update(id, updateUserDto);
+  @Get('without-exception/:firstName')
+  async findOneWithoutException(@Param('firstName') firstName: string): Promise<User | null> {
+    return this.usersService.findOneWithoutException(firstName);
+  }
+
+  @Patch(':id')
+  async updateOne(@Param('id') id: string, @Body() dto: IUpdateUserPartialInput): Promise<User> {
+    return this.usersService.updateOne(id, dto);
   }
 
   @Delete(':id')
-  async deleteUser(@Param('id') id: string): Promise<string> {
+  async remove(@Param('id') id: string): Promise<string> {
     return this.usersService.remove(id);
   }
 }
