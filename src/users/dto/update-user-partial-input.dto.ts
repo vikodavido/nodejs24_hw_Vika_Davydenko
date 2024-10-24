@@ -4,22 +4,21 @@ import { IUpdateUserPartialInput } from '../interfaces/update-user-partial-input
 export class UpdateUserPartialInputDto implements IUpdateUserPartialInput {
   @IsString()
   @IsOptional()
-  firstName: string | null;
+  firstName?: string; 
 
   @IsString()
   @IsOptional()
-  lastName: string | null;
+  lastName?: string; 
 
   @IsInt()
   @IsOptional()
-  age: number | null;
+  age?: number;
 
   @IsBoolean()
   @IsOptional()
-  isStudent: boolean | null;
+  isStudent?: boolean; 
 
   @IsString()
   @IsOptional()
-  password: string | null;
-
+  password?: string; 
 }
