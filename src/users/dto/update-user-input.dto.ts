@@ -1,19 +1,24 @@
-import { IsBoolean, IsInt, IsString } from 'class-validator';
+import { IsBoolean, IsInt, IsString, IsOptional } from 'class-validator';
 import { IUpdateUserInput } from '../interfaces/update-user-input.interface';
 
 export class UpdateUserInputDto implements IUpdateUserInput {
   @IsString()
-  firstName: string | null;
+  @IsOptional()
+  firstName?: string; 
 
   @IsString()
-  lastName: string | null;
+  @IsOptional()
+  lastName?: string; 
 
   @IsInt()
-  age: number | null;
+  @IsOptional()
+  age?: number; 
 
   @IsBoolean()
-  isStudent: boolean | null;
+  @IsOptional()
+  isStudent?: boolean; 
 
   @IsString()
-  password: string | null;
+  @IsOptional()
+  password?: string; 
 }
