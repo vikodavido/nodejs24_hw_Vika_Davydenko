@@ -10,11 +10,7 @@ export class MongoDatabaseService extends DatabaseModule implements OnModuleInit
 
   constructor(private configService: ConfigService) {
     super();
-    // console.log('MONGODB_WRITE_CONNECTION_STRING', this.configService.get<string>('MONGODB_WRITE_CONNECTION_STRING'));
     const connectionString = this.configService.get<string>('MONGODB_WRITE_CONNECTION_STRING') || 'mongodb://root:qwerty@172.19.0.2:27017/nestdb?authSource=admin';
-
-    // const connectionString = this.configService.get<string>('MONGODB_WRITE_CONNECTION_STRING') || 'mongodb://root:qwerty@mongo:27017/nestdb?authSource=admin';
-
     this.client = new MongoClient(connectionString);
   }
 
@@ -23,20 +19,19 @@ export class MongoDatabaseService extends DatabaseModule implements OnModuleInit
   }
   
   public async connect(): Promise<void> {
-    // console.log('Подключен:', this.client.isConnected());
     try {
       await this.client.connect();
       this.db = this.client.db('nestdb');
-      console.log('Подключение к MongoDB установлено');
+      console.log('Connection to MongoDB established');
     } catch (error) {
-      console.error('Ошибка подключения к MongoDB:', error);
-      throw new Error('Не удалось подключиться к MongoDB');
+      console.error('Error connecting to MongoDB:', error);
+      throw new Error('Failed to connect to MongoDB');
     }
   }
 
   async disconnect(): Promise<void> {
     await this.client.close();
-    console.log('Соединение с MongoDB закрыто');
+    console.log('MongoDB connection closed');
   }
 
   async insertOne(table: string, data: any): Promise<void> {
