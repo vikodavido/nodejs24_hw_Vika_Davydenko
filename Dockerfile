@@ -6,7 +6,6 @@ COPY package*.json ./
 
 RUN npm install
 
-# Установка утилит
 RUN apt-get update && apt-get install -y iputils-ping curl
 
 COPY . .
